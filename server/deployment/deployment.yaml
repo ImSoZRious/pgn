@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: server
-          image: localhost:5000/pgn_server
+          image: k3d-registry.localhost:5000/pgn_server
           ports:
             - name: grpc
               containerPort: 50051

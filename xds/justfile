@@ -1,0 +1,16 @@
+registry := "localhost:5000"
+
+alias b := build
+alias d := deploy
+
+clone:
+    git init
+    git remote add origin https://github.com/wongnai/xds
+    git pull origin master
+
+build:
+    docker build -t {{registry}}/pgn_xds .
+    docker push {{registry}}/pgn_xds
+
+deploy:
+    kubectl apply -f deployment

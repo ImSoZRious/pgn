@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: localhost:5000/pgn_client
+          image: k3d-registry.localhost:5000/pgn_client
           env:
             - name: SERVER_ADDR
               valueFrom:
