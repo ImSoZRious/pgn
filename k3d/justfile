@@ -1,19 +1,6 @@
 registry_name := "registry.localhost"
 
 create:
-    #!/bin/zsh
-    # has_registry=$(docker inspect -f '{{{{.State.Running}}' {{registry_name}} 2>/dev/null)
-    # if [ "${has_registry}" != "true" ]; then
-    #     docker run \
-    #         -d \
-    #         --name {{registry_name}} \
-    #         --restart always \
-    #         -v local_registry:/var/lib/registry \
-    #         -p 5000:5000 \
-    #         -e REGISTRY_HTTP_ADDR=0.0.0.0:5000 \
-    #         registry:2
-    # fi
-
     k3d registry create {{registry_name}} --port 5000
 
     k3d cluster create local --registry-use {{registry_name}}
