@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: server
+  template:
+    metadata:
+      labels:
+        app: server
+    spec:
+      containers:
+        - name: server
+          image: localhost:5000/pgn_server
+          ports:
+            - name: grpc
+              containerPort: 50051
+          env:
+            - name: SERVER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: server-config
+                  key: server_port
+          livenessProbe:
+            grpc:
+              port: 50051
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            grpc:
+              port: 50051
+            initialDelaySeconds: 10
+            periodSeconds: 10

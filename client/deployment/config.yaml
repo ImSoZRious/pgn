@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: client-config
+data:
+  xds_bootstrap.json: |
+    {
+        "xds_servers": [
+            {
+                "server_uri": "xds-svc:5000",
+                "channel_creds": [{"type": "insecure"}],
+                "server_features": ["xds_v3"]
+            }
+        ],
+        "node": {
+            "id": "anything",
+            "locality": {
+                "zone" : "k8s"
+            }
+        }
+    }
+  server_addr: xds:///server.default:50051
+  health_port: "50053"
+  fetch_interval: "5"

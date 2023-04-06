@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client
+  template:
+    metadata:
+      labels:
+        app: client
+    spec:
+      containers:
+        - name: client
+          image: localhost:5000/pgn_client
+          env:
+            - name: SERVER_ADDR
+              valueFrom:
+                configMapKeyRef:
+                  name: client-config
+                  key: server_addr
+            - name: HEALTH_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: client-config
+                  key: health_port
+            - name: FETCH_INTERVAL
+              valueFrom:
+                configMapKeyRef:
+                  name: client-config
+                  key: fetch_interval
+          livenessProbe:
+            grpc:
+              port: 50053
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            grpc:
+              port: 50053
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          volumeMounts:
+            - name: xds-bootstrap
+              mountPath: /var/run/config
+      volumes:
+        - name: xds-bootstrap
+          configMap:
+            name: client-config
+            items:
+              - key: xds_bootstrap.json
+                path: xds_bootstrap.json

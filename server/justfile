@@ -1,0 +1,15 @@
+registry := "localhost:5000"
+
+alias b := build
+alias r := run
+alias d := deploy
+
+build:
+    docker build -t {{registry}}/pgn_server .
+    docker push {{registry}}/pgn_server
+
+run:
+    go run ./main.go
+
+deploy:
+    kubectl apply -f deployment
