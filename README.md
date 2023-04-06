@@ -37,4 +37,4 @@ just deploy
 
 # Issue
 - Hard to debug
-- xDS Server fetch interval
+- xDS Server fetch interval (without knowing how xDS API work)
