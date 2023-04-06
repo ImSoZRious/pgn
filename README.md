@@ -31,10 +31,10 @@ just deploy
 - [salrashid123/grpc_xds](https://github.com/salrashid123/grpc_xds)
 ## API Reference
 - [envoyproxy/go-control-plane](https://github.com/envoyproxy/go-control-plane)
-- [xDS REST and gRPC protocol](https://www.envoyproxy.io/docs/envoy/latest/api-docs/xds_protocol)
+- [xDS REST and gRPC protocol](https://www.envoyproxy.io/docs/envoy/latest/api-docs/xds_protocol)
 ## xDS Server
 - [wongnai/xds](https://github.com/wongnai/xds)
 
 # Issue
-- Hard to debug
-- xDS Server fetch interval (without knowing how xDS API work)
+- Hard to debug (without knowing how xDS API work)
+- xDS Server fetch interval
