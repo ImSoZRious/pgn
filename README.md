@@ -36,5 +36,14 @@ just deploy
 - [wongnai/xds](https://github.com/wongnai/xds)
 
 # Issue
-- Hard to debug (without knowing how xDS API work)
+- Hard to debug
 - xDS Server fetch interval
+
+## This setup that's work and don't
+### Work
+- Named service port and connect with port number (as shown in example)
+- Multiple named port
+
+### Does not work
+- Remove service's port name
+- Use service named port to connect (e.g. xds:///server:grpc)
